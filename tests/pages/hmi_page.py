@@ -14,6 +14,7 @@ class HmiPage(BasePage):
 
         self.ac_toggle_btn = "#ac-toggle"
         self.temp_driver_up = "#temp-driver-up"
+        self.temp_driver_down = "#temp-driver-down"
         self.temp_driver_display = "#temp-driver-display"
 
         self.play_pause_btn = "#media-play-pause"
@@ -30,6 +31,10 @@ class HmiPage(BasePage):
     def toggle_ac(self):
         """Toggle AC state."""
         self.page.click(self.ac_toggle_btn)
+
+    def decrease_temperature(self):
+        """Decrease driver temperature."""
+        self.page.click(self.temp_driver_down)
 
     def play_media(self):
         """Play or pause media."""

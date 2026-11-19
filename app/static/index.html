@@ -27,6 +27,7 @@
             <h2>Climate Control</h2>
             <button id="ac-toggle" onclick="toggleAC()">AC: <span id="ac-status">ON</span></button>
             <p>Driver Temp: <span id="temp-driver-display">21.5</span>°C</p>
+            <button id="temp-driver-down" onclick="decreaseTemp()">Temp -</button>
             <button id="temp-driver-up" onclick="increaseTemp()">Temp +</button>
         </div>
 
@@ -63,6 +64,10 @@
         function increaseTemp() {
             const el = document.getElementById('temp-driver-display');
             el.innerText = (parseFloat(el.innerText) + 0.5).toFixed(1);
+        }
+        function decreaseTemp() {
+            const el = document.getElementById('temp-driver-display');
+            el.innerText = (parseFloat(el.innerText) - 0.5).toFixed(1);
         }
         function togglePlay() {
             const btn = document.getElementById('media-play-pause');

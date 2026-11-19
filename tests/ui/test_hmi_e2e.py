@@ -16,6 +16,13 @@ def test_hmi_climate_tab_interaction(hmi):
     hmi.toggle_ac()
     assert hmi.page.locator("#ac-status").inner_text() == "OFF"
 
+def test_hmi_climate_temp_down(hmi):
+    hmi.click_climate_control()
+    initial_temp = float(hmi.page.locator("#temp-driver-display").inner_text())
+    hmi.decrease_temperature()
+    new_temp = float(hmi.page.locator("#temp-driver-display").inner_text())
+    assert new_temp == initial_temp - 0.5
+
 def test_hmi_media_interaction(hmi):
     hmi.page.click(hmi.media_tab)
     assert hmi.page.locator("#media-panel").is_visible()
