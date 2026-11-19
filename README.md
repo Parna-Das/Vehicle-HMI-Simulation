@@ -37,5 +37,15 @@ Comprehensive test automation framework for modern automotive infotainment Human
   pytest -m hmi
   ```
 
+## CI/CD Pipeline & Reporting
+
+This project includes a GitHub Actions pipeline (`.github/workflows/ci.yml`) to automatically run tests on push/PR.
+
+- **Test Reports**: Allure reports are generated during CI execution in the `allure-results` directory.
+- **Viewing Reports**: After running tests locally with `--alluredir=allure-results`, serve the report using:
+  ```bash
+  allure serve allure-results
+  ```
+
 ## License
 Proprietary / Internal Automation Suite.
