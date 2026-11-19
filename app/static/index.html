@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Automotive Infotainment HMI</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #111; color: #eee; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: #222; padding: 20px; border-radius: 8px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        button { padding: 10px 20px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+        button.active { background: #0066cc; }
+        .panel { display: none; }
+        .panel.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle HMI Simulation</h1>
+        <div class="tabs">
+            <button id="climate-tab" class="active" onclick="switchTab('climate')">Climate</button>
+            <button id="media-tab" onclick="switchTab('media')">Media</button>
+            <button id="nav-tab" onclick="switchTab('nav')">Navigation</button>
+            <button id="telemetry-tab" onclick="switchTab('telemetry')">Telemetry</button>
+        </div>
+
+        <div id="climate-panel" class="panel active">
+            <h2>Climate Control</h2>
+            <button id="ac-toggle" onclick="toggleAC()">AC: <span id="ac-status">ON</span></button>
+            <p>Driver Temp: <span id="temp-driver-display">21.5</span>°C</p>
+            <button id="temp-driver-up" onclick="increaseTemp()">Temp +</button>
+        </div>
+
+        <div id="media-panel" class="panel">
+            <h2>Media Player</h2>
+            <p>Now Playing: <span id="media-track-title">Electric Sunrise</span></p>
+            <button id="media-play-pause" onclick="togglePlay()">Play/Pause</button>
+        </div>
+
+        <div id="nav-panel" class="panel">
+            <h2>Navigation</h2>
+            <input type="text" id="nav-destination-input" placeholder="Enter destination..." />
+            <button id="nav-submit-btn" onclick="setDestination()">Set Destination</button>
+            <p>Status: <span id="nav-status-display">Inactive</span></p>
+        </div>
+
+        <div id="telemetry-panel" class="panel">
+            <h2>Telemetry Dashboard</h2>
+            <p>Speed: <span id="speed-display">65.0</span> MPH</p>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+            document.getElementById(tab + '-panel').classList.add('active');
+            document.getElementById(tab + '-tab').classList.add('active');
+        }
+        function toggleAC() {
+            const el = document.getElementById('ac-status');
+            el.innerText = el.innerText === 'ON' ? 'OFF' : 'ON';
+        }
+        function increaseTemp() {
+            const el = document.getElementById('temp-driver-display');
+            el.innerText = (parseFloat(el.innerText) + 0.5).toFixed(1);
+        }
+        function togglePlay() {
+            const btn = document.getElementById('media-play-pause');
+            btn.innerText = btn.innerText === 'Playing' ? 'Paused' : 'Playing';
+        }
+        function setDestination() {
+            const val = document.getElementById('nav-destination-input').value;
+            document.getElementById('nav-status-display').innerText = 'Navigating to ' + val;
+        }
+    </script>
+</body>
+</html>
